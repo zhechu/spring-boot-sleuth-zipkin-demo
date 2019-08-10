@@ -1,23 +1,23 @@
 
-# 自定义属性
-application:
-  service:
-    spring-boot-zipkin-server:
-      name: spring-boot-zipkin-server
-      url:
-
 server:
   port: 8081
 
 spring:
   application:
     name: spring-boot-provider
-  zipkin:
-    base-url: http://${application.service.spring-boot-zipkin-server.name}/
+  rabbitmq:
+    host: 192.168.163.41
+    port: 5672
+    username: admin
+    password: 123456
+    virtual-host: /dev
   sleuth:
     sampler:
       # 采样率，模式0.1，也就是10%，为了便于观察效果，改为1.0，也就是100%。生产环境建议保持默认。
       probability: 1.0
+  zipkin:
+    rabbitmq:
+      queue: zipkin
 
 eureka:
   client:

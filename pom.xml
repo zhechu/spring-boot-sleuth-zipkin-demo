@@ -10,7 +10,6 @@
     <modules>
         <module>spring-boot-provider</module>
         <module>spring-boot-consumer</module>
-        <module>spring-boot-zipkin-server</module>
     </modules>
     <packaging>pom</packaging>
 
