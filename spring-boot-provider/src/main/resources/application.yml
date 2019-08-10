@@ -1,0 +1,29 @@
+
+# 自定义属性
+application:
+  service:
+    spring-boot-zipkin-server:
+      name: spring-boot-zipkin-server
+      url:
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: spring-boot-provider
+  zipkin:
+    base-url: http://${application.service.spring-boot-zipkin-server.name}/
+  sleuth:
+    sampler:
+      # 采样率，模式0.1，也就是10%，为了便于观察效果，改为1.0，也就是100%。生产环境建议保持默认。
+      probability: 1.0
+
+eureka:
+  client:
+    service-url:
+      # 指定eureka server通信地址，注意/eureka/小尾巴不能少
+      defaultZone: http://admin:123456@127.0.0.1:8761/eureka/
+  instance:
+    # 是否注册 IP 到 eureka server，如不指定或设为 false，那就会注册主机名到 eureka server
+    prefer-ip-address: true
